@@ -1,3 +1,14 @@
+# user config
+config.toml
+
+# data files
+*.mp4
+*.mp3
+*.mkv
+
+# pycharm project files
+.idea
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
