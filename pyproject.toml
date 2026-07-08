@@ -1,0 +1,25 @@
+[project]
+name="range_downloader"
+requires-python=">=3.12"
+dynamic=["dependencies", "optional-dependencies"]
+version="0.1.0"
+
+[build-system]
+requires=["setuptools", "wheel"]
+build-backend="setuptools.build_meta"
+
+[tool.pytest.ini_options]
+pythonpath="src"
+
+[tool.setuptools.dynamic]
+dependencies={file=["requirements.txt"]}
+optional-dependencies = { test = { file = ["requirements-test.txt"] } }
+
+[tool.setuptools.packages.find]
+where=["src"]
+
+[tool.coverage.run]
+source=["src"]
+
+[tool.pylint.'MESSAGE CONTROL']
+disable=["line-too-long", "missing-function-docstring", "missing-class-docstring", "missing-module-docstring", "too-few-public-methods", ]

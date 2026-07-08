@@ -48,7 +48,7 @@ def get_defaults(cls) -> dict[str, any]:
 
 def load_config() -> Config:
     # Get defaults from dataclass
-    config_dict = get_defaults(Config)  # {'file_extension': '.mp4'}
+    config_dict = get_defaults(Config)
 
     # Load TOML file (if exists)
     toml_data = load_toml(Path("config.toml"))
@@ -80,11 +80,10 @@ def load_config() -> Config:
     config_dict.update(cli_data)
 
     # Ensure required fields are present
-    required = [f.name for f in fields(Config)
-                if f.default == f.default_factory and f.default_factory is None]
+    required = [f.name for f in fields(Config) if f.default is MISSING and f.default_factory is MISSING]
     missing = [f for f in required if f not in config_dict or config_dict[f] is None]
     if missing:
         raise ValueError(f"Missing required config fields: {', '.join(missing)}")
 
-    # Instantiate – dataclass will do basic type checking (but not coercion)
+    # Instantiate
     return Config(**config_dict)
