@@ -8,10 +8,10 @@ import tomllib
 
 @dataclass
 class Config:
-    url:str|list[str]
-    filename:str = "out.mp4"
-    output_folder:str = "."
-    ffmpeg_validate:bool = False
+    url: str | list[str]
+    filename: str | None = None
+    output_folder: str | Path = "."
+    ffmpeg_validate: bool = False
 
 
 
