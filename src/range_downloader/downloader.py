@@ -46,6 +46,8 @@ def download(
             else:
                 current_filename = f"{config.filename}_{url_cnt}"
         output_file = Path(config.output_folder / current_filename)
+
+        print(f"Downloading from {url}")
         result = download_one(
             url=url,
             output_file=output_file,
@@ -86,6 +88,7 @@ def download_one(url: str,
         chunk_cnt = chunk_cnt + 1
 
     if ffmpeg_validate:
+        print("Validating file")
         # ffmpeg -v error -i out.mp4 -f null - 2>&1
         validate_command = ["ffmpeg", "-v", "error", "-i", f"{output_file.resolve()}", "-f", "null", "-"]
         result = subprocess.run(validate_command, capture_output=True, text=True)
